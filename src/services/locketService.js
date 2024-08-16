@@ -11,6 +11,10 @@ export const login = async (email, password, onPleaseWait) => {
         const res = await axios.post(constants.apiRoutes.LOGIN_URL, {
             email,
             password,
+        }, {
+            headers: {
+                "Content-Type": "application/json",
+            },
         });
 
         clearTimeout(timeOutId);
@@ -49,6 +53,7 @@ export const uploadMedia = async (file, caption, onPleaseWait) => {
             {
                 headers: {
                     "Content-Type": "multipart/form-data",
+                    
                 },
             },
         );

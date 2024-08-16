@@ -1,8 +1,8 @@
 const constants = {
     apiRoutes: {
-        LOGIN_URL: "https://locketuploader-be-render.onrender.com/locket/login",
+        LOGIN_URL: "http://localhost:5001/locket/login",
         UPLOAD_MEDIA_URL:
-            "https://locketuploader-be-render.onrender.com/locket/upload-media",
+            "http://localhost:5001/locket/upload-media",
     },
     toastSettings: {
         position: "bottom-right",

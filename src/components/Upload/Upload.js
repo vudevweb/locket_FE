@@ -35,7 +35,7 @@ const Upload = () => {
         setUser(userInfo.user);
 
         toast.dismiss();
-        toast.success("Login successfully", {
+        toast.success("Đăng nhập thành công", {
             ...constants.toastSettings,
         });
         // Lưu vào cookie
@@ -82,7 +82,10 @@ const Upload = () => {
                         setCaption("");
                         setIsUploading(false);
 
-                        toast.success(`Upload ${fileType} successfully`, {
+                        // toast.success(`Upload ${fileType} successfully`, {
+                        //     ...constants.toastSettings,
+                        // });
+                        toast.success(`Đăng bài thành công`, {
                             ...constants.toastSettings,
                         });
                     }
@@ -90,10 +93,14 @@ const Upload = () => {
                 .catch((error) => {
                     let message =
                         error?.response?.data?.error?.message ||
-                        "Upload failed";
+                        "Không thể tải lên";
 
-                    if (message === "Failed to upload image: Forbidden") {
-                        message = `Your ${fileType} is exceeding the maximum size allowed, please try again with a smaller ${fileType}`;
+                    if (message === "Không thể tải lên") {
+                        message = `
+                            File không hợp lệ hoặc dung lượng file quá lớn.
+                            Vui lòng chọn file khác và thử lại
+                            `;
+                        // message = `Your ${fileType} is exceeding the maximum size allowed, please try again with a smaller ${fileType}`;
                     }
                     setIsUploading(false);
                     toast.error(message, {
@@ -106,7 +113,7 @@ const Upload = () => {
     const showToastPleaseWait = () => {
         toast.dismiss();
         toast.info(
-            "I just migrated the server to Render at the free version, so the request may take a longer time. Please wait for it. ",
+            "Vui lòng đợi! Hệ thống đang xử lý yêu cầu của bạn",
             {
                 ...constants.toastSettings,
             },
@@ -118,12 +125,12 @@ const Upload = () => {
             <div className={cx("card")}>
                 {user ? (
                     <>
-                        <h2 className={cx("title")}>Upload image or video</h2>
+                        <h2 className={cx("title")}>Tải lên hình ảnh hoặc video</h2>
                         <div className={cx("input-container")}>
                             <input
                                 type="text"
                                 className={cx("post-title")}
-                                placeholder="Enter the title for your post"
+                                placeholder="Nhập caption cho bài đăng"
                                 value={caption}
                                 onChange={(e) => setCaption(e.target.value)}
                             />
@@ -174,13 +181,13 @@ const Upload = () => {
                                         />
                                     </button>
                                     <h3>
-                                        Drag and Drop file here or{" "}
+                                        {/* Kéo thả ảnh, video vào đây hoặc{" "}
                                         <button
                                             className={cx("underline")}
                                             onClick={handleTriggerUploadFile}
                                         >
-                                            Choose file
-                                        </button>
+                                            chọn ảnh từ thư viện của bạn
+                                        </button> */}
                                         <input
                                             type="file"
                                             ref={fileRef}
@@ -195,7 +202,7 @@ const Upload = () => {
                             <Help />
                             <div className={cx("buttons")}>
                                 <button onClick={() => setPreviewUrl("")}>
-                                    Cancel
+                                    Hủy
                                 </button>
                                 <button
                                     disabled={
@@ -208,7 +215,7 @@ const Upload = () => {
                                     })}
                                     onClick={handleUploadFile}
                                 >
-                                    <span>Submit</span>
+                                    <span>Đăng bài</span>
                                     {isUploading && (
                                         <img
                                             src={images.spinner}
@@ -222,12 +229,12 @@ const Upload = () => {
                     </>
                 ) : (
                     <div className={cx("no-login")}>
-                        <h3>Please login to upload image or video</h3>
+                        <h3> Đăng nhập để có thể đăng ảnh hoặc video </h3>
                         <button
                             className={cx("btn-login")}
                             onClick={() => setIsShowModal(true)}
                         >
-                            Login here
+                            Đăng nhập ngay
                         </button>
                         <LoginModal
                             handleAfterLogin={handleAfterLogin}

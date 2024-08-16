@@ -7,7 +7,6 @@ export const encryptLoginData = (email, password) => {
         password,
         secretKey,
     ).toString();
-
     return { encryptedEmail, encryptedPassword };
 };
 
@@ -21,6 +20,5 @@ export const decryptLoginData = (encryptedEmail, encryptedPassword) => {
         encryptedPassword,
         secretKey,
     ).toString(CryptoJS.enc.Utf8);
-
     return { decryptedEmail, decryptedPassword };
 };

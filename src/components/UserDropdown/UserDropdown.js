@@ -1,4 +1,6 @@
 import React, { useContext } from "react";
+import { Link } from "react-router-dom";
+
 import styles from "./UserDropdown.module.scss";
 import classNames from "classnames/bind";
 import PropTypes from "prop-types";
@@ -23,9 +25,13 @@ const UserDropdown = ({ userInfo, className }) => {
                 render={(attrs) => (
                     <div className={cx("dropdown")} tabIndex="-1" {...attrs}>
                         <div className={cx("dropdown-item")}>
+                            <Link to="/profile" >Tài khoản</Link>
+                        </div>
+                        <div className={cx("dropdown-item")}>
                             <button onClick={handleLogout}>Đăng xuất</button>
                         </div>
                     </div>
+                    
                 )}
                 interactive
                 placement="bottom-end"

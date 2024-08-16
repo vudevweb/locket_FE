@@ -11,35 +11,35 @@ const Help = () => (
             render={(attrs) => (
                 <div className={cx("wrapper")} tabIndex="-1" {...attrs}>
                     <p className={cx("content")}>
-                        Currently, my website serves images less than{" "}
-                        <b> 1MB </b> and videos less than <b>10 MB</b> and and
-                        doesn't exceed {""}
+                        - Hiện tại, chỉ đăng được hình ảnh dưới{" "}
+                        <b> 1MB. </b> <br />
+                        - Video dưới <b>10 MB</b> và không quá{" "}
                         <b>
-                            1&nbsp;minute.
+                            1&nbsp; phút.
                             <br />
                         </b>{" "}
-                        Show you can access{" "}
+                        - Bạn có thể truy cập{" "}
                         <a
                             className={cx("link")}
                             href="https://tinypng.com/"
                             target="_blank"
                             rel="noreferrer"
                         >
-                            this page
+                            trang này
                         </a>
-                        <span> to compress the PNG and JPEG files.</span>
+                        <span> để nén hình ảnh.</span>
                         <br />
                         <span>
-                            Or use{" "}
+                            - Hoặc truy cập{" "}
                             <a
                                 className={cx("link")}
                                 href="https://www.freeconvert.com/video-compressor"
                                 target="_blank"
                                 rel="noreferrer"
                             >
-                                this page
+                                trang này
                             </a>{" "}
-                            to compress both image and video.
+                            để nén hình ảnh hoặc video.
                         </span>
                     </p>
                 </div>
@@ -50,7 +50,7 @@ const Help = () => (
             placement="top-start"
             hideOnClick={false}
         >
-            <div className={cx("help-me")}>Help me</div>
+            <div className={cx("help-me")}>Chú ý!</div>
         </TippyHeadless>
     </div>
 );

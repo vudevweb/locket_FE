@@ -8,7 +8,7 @@ const cx = classNames.bind(styles);
 
 const Home = () => {
     return (
-        <div className={cx("wrapper")}>
+        <div className={cx("test")}>
             <Header />
             <div className={cx("content")}>
                 <Upload />

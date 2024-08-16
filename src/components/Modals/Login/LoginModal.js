@@ -21,7 +21,7 @@ const LoginModal = ({ handleAfterLogin, onPleaseWait, ...props }) => {
 
     const handleLogin = async () => {
         toast.dismiss();
-        const toastId = toast.info("Logging in ....", {
+        const toastId = toast.info("Đang đăng nhập ....", {
             ...constants.toastSettings,
         });
 
@@ -41,12 +41,12 @@ const LoginModal = ({ handleAfterLogin, onPleaseWait, ...props }) => {
         } else if (toast.isActive(toastId)) {
             toast.update(toastId, {
                 ...constants.toastSettings,
-                render: "Username or password is incorrect",
+                render: "Email hoặc mật khẩu không đúng",
                 type: "error",
             });
         } else {
             toast.dismiss();
-            toast.error("Username or password is incorrect", {
+            toast.error("Email hoặc mật khẩu không đúng", {
                 ...constants.toastSettings,
             });
         }
@@ -62,7 +62,7 @@ const LoginModal = ({ handleAfterLogin, onPleaseWait, ...props }) => {
     const handleChangeEmail = (e) => {
         setEmail(e.target.value);
         if (e.target.value && !validateEmail(e.target.value)) {
-            setEmailErrorMessage("Invalid email");
+            setEmailErrorMessage("Email không hợp lệ");
             setIsDisabledSubmit(true);
         } else {
             setEmailErrorMessage("");
@@ -75,7 +75,7 @@ const LoginModal = ({ handleAfterLogin, onPleaseWait, ...props }) => {
             <Modal.Header closeButton>
                 <header className="title-wrapper">
                     <Modal.Title id="contained-modal-title-vcenter">
-                        Login
+                        Đăng nhập
                     </Modal.Title>
                 </header>
             </Modal.Header>
@@ -94,7 +94,7 @@ const LoginModal = ({ handleAfterLogin, onPleaseWait, ...props }) => {
                         <Form.Control
                             className={"bs-input"}
                             type="text"
-                            placeholder="Enter email"
+                            placeholder="Nhập email của bạn"
                             value={email}
                             onChange={handleChangeEmail}
                             autoComplete="none"
@@ -104,12 +104,12 @@ const LoginModal = ({ handleAfterLogin, onPleaseWait, ...props }) => {
 
                     <Form.Group controlId="formBasicPassword" className="mt-3">
                         <Form.Label className="custom-label">
-                            Password
+                            Mật khẩu
                         </Form.Label>
                         <div className="password-wrapper">
                             <Form.Control
                                 type={isShowPassword ? "text" : "password"}
-                                placeholder="Password"
+                                placeholder="Nhập mật khẩu của bạn"
                                 value={password}
                                 onChange={(e) => setPassword(e.target.value)}
                                 autoComplete="new-password"
@@ -141,7 +141,7 @@ const LoginModal = ({ handleAfterLogin, onPleaseWait, ...props }) => {
             </Modal.Body>
             <Modal.Footer>
                 <Button variant="secondary" onClick={props.onHide}>
-                    Close
+                    Đóng
                 </Button>
                 <Button
                     variant="primary"
@@ -149,7 +149,7 @@ const LoginModal = ({ handleAfterLogin, onPleaseWait, ...props }) => {
                     className="btn-login"
                     disabled={!email || !password || isDisabledSubmit}
                 >
-                    Login
+                    Đăng nhập
                 </Button>
             </Modal.Footer>
         </Modal>
