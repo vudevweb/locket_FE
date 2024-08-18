@@ -11,7 +11,7 @@ const cx = classNames.bind(styles);
 
 const Header = () => {
     const { user } = useContext(AuthContext);
-
+    
     return (
         <div className={cx("wrapper")}>
             <div className={cx("logo-wrapper")}>

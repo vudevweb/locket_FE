@@ -17,7 +17,7 @@ input[type="file"] {
     padding: 30px;
     padding-bottom: 20px;
     width: 60%;
-    height: 90%;
+    // height: 90%;
     background: #fff;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     border-radius: 10px;
@@ -63,6 +63,7 @@ input[type="file"] {
 }
 
 .upload-area {
+    padding: 10px;
     .content {
         text-align: center;
     }
@@ -79,11 +80,19 @@ input[type="file"] {
         max-width: 100%;
         max-height: 100%;
         object-fit: cover;
+        border-radius: 10px;
     }
 
     .preview-video {
-        width: 500px;
+        width: 400px;
+        max-width: 100%;
+        max-height: 100%;
         object-fit: cover;
+        border-radius: 10px;
+    }
+
+    .btn-upload {
+        border: none !important;
     }
 }
 
@@ -94,18 +103,28 @@ input[type="file"] {
 
     .btn-delete-preview {
         display: flex;
+        border: none;
         border-radius: 50%;
         width: 20px;
-        background: #fff;
+        background: red;
         height: 20px;
         align-items: center;
         justify-content: center;
         position: absolute;
         right: 10px;
         top: 10px;
+        color: #fff !important;
+        cursor: pointer;
+        transition: all 0.3s;
 
-        &:hover {
+        &:hover .preview-image{
+            border:  1px solid red;
+        }
+
+        &:hover  {
             color: red;
+            width: 30px;
+            height: 30px;
         }
     }
 }

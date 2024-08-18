@@ -125,11 +125,11 @@ const Upload = () => {
             <div className={cx("card")}>
                 {user ? (
                     <>
-                        <h2 className={cx("title")}>Tải lên hình ảnh hoặc video</h2>
-                        <div className={cx("input-container")}>
+                        <h4 className="text-center">Tải lên hình ảnh hoặc video</h4>
+                        <div className="mb-3">
                             <input
                                 type="text"
-                                className={cx("post-title")}
+                                className="form-control"
                                 placeholder="Nhập caption cho bài đăng"
                                 value={caption}
                                 onChange={(e) => setCaption(e.target.value)}
@@ -173,7 +173,7 @@ const Upload = () => {
                                 </div>
                             ) : (
                                 <div className={cx("content")}>
-                                    <button onClick={handleTriggerUploadFile}>
+                                    <button className={cx("btn-upload")} onClick={handleTriggerUploadFile}>
                                         <img
                                             src={images.mediaUpload}
                                             alt="upload"
