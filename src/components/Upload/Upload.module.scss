@@ -189,11 +189,15 @@ input[type="file"] {
     flex-direction: column;
     gap: 20px;
     height: 50%;
+    font-size: 1rem;
 
+    h3 {
+        text-align: center;
+    }
     .btn-login {
-        font-size: 1.5rem;
+        font-size: 1rem;
         padding: 10px 20px;
-        border-radius: 5px;
+        border-radius: 6px;
         background-color: var(--primary-color);
         color: #fff;
         font-weight: 600;
