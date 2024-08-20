@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
+import { toast } from "react-toastify";
 import { message } from "antd";
 
 import constants from "~/services/constants";
@@ -20,8 +21,10 @@ const LoginModal = ({ handleAfterLogin, onPleaseWait, ...props }) => {
     const [emailErrorMessage, setEmailErrorMessage] = useState("");
 
     const handleLogin = async () => {
-        message.destroy();
-        const toastId = message.loading("Đang đăng nhập ....", 0);
+        toast.dismiss();
+        const toastId = toast.info("Đang đăng nhập ....", {
+            ...constants.toastSettings,
+        });
 
         const { encryptedEmail, encryptedPassword } =
             securityService.encryptLoginData(email, password);
@@ -35,11 +38,18 @@ const LoginModal = ({ handleAfterLogin, onPleaseWait, ...props }) => {
         );
 
         if (res) {
-            message.destroy();
             handleAfterLogin(res);
+        } else if (toast.isActive(toastId)) {
+            toast.update(toastId, {
+                ...constants.toastSettings,
+                render: "Email hoặc mật khẩu không đúng",
+                type: "error",
+            });
         } else {
-            message.destroy();
-            message.error("Email hoặc mật khẩu không đúng");
+            toast.dismiss();
+            toast.error("Email hoặc mật khẩu không đúng", {
+                ...constants.toastSettings,
+            });
         }
         setIsDisabledSubmit(false);
     };

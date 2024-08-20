@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useRef, useState } from "react";
 import styles from "./Upload.module.scss";
 import classNames from "classnames/bind";
 import { toast } from "react-toastify";
+import { message } from "antd";
 
 import { AuthContext } from "~/contexts/AuthContext";
 import constants from "~/services/constants";
@@ -35,9 +36,12 @@ const Upload = () => {
         setUser(userInfo.user);
 
         toast.dismiss();
-        toast.success("Đăng nhập thành công", {
-            ...constants.toastSettings,
-        });
+        message.destroy();
+        message.success("Đăng nhập thành công", 3);
+        // toast.success("Đăng nhập thành công", {
+        //     ...constants.toastSettings,
+        // });
+
         // Lưu vào cookie
         miscFuncs.setCookie("user", JSON.stringify(userInfo.user), 1);
     };
@@ -81,43 +85,36 @@ const Upload = () => {
                         setPreviewUrl("");
                         setCaption("");
                         setIsUploading(false);
-
-                        // toast.success(`Upload ${fileType} successfully`, {
-                        //     ...constants.toastSettings,
-                        // });
-                        toast.success(`Đăng bài thành công`, {
-                            ...constants.toastSettings,
-                        });
+                        message.success("Đăng bài thành công", 3);
                     }
                 })
                 .catch((error) => {
-                    let message =
-                        error?.response?.data?.error?.message ||
+                    let message_alert =
+                        error?.response?.data?.error?.message_alert ||
                         "Không thể tải lên";
 
-                    if (message === "Không thể tải lên") {
-                        message = `
+                    if (message_alert === "Không thể tải lên") {
+                        message_alert = `
                             File không hợp lệ hoặc dung lượng file quá lớn.
                             Vui lòng chọn file khác và thử lại
                             `;
-                        // message = `Your ${fileType} is exceeding the maximum size allowed, please try again with a smaller ${fileType}`;
                     }
                     setIsUploading(false);
-                    toast.error(message, {
-                        ...constants.toastSettings,
-                    });
+                    message.error(message_alert, 3);
                 });
         }
     };
 
     const showToastPleaseWait = () => {
         toast.dismiss();
-        toast.info(
-            "Vui lòng đợi! Hệ thống đang xử lý yêu cầu của bạn",
-            {
-                ...constants.toastSettings,
-            },
-        );
+        message.destroy();
+        message.loading("Vui lòng đợi! Hệ thống đang xử lý yêu cầu của bạn", 0);
+        // toast.info(
+        //     "Vui lòng đợi! Hệ thống đang xử lý yêu cầu của bạn",
+        //     {
+        //         ...constants.toastSettings,
+        //     },
+        // );
     };
 
     return (

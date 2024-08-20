@@ -3,6 +3,7 @@ import styles from "./Home.module.scss";
 import classNames from "classnames/bind";
 import Header from "~/components/Header";
 import Upload from "~/components/Upload";
+import { Button } from 'antd';
 const cx = classNames.bind(styles);
 
 const Home = () => {
